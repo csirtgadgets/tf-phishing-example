@@ -4,6 +4,8 @@ Based on the outstanding work by:
 
 https://medium.com/slalom-engineering/detecting-malicious-requests-with-keras-tensorflow-5d5db06b4f28
 
+https://csirtgadgets.com/commits/2018/6/9/phishing-predictions-with-deep-learning-and-tensorflow
+
 ```bash
 $ mkvirtualenv tf
 $ pip install pandas tensorflow keras
