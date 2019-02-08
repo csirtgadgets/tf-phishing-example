@@ -55,22 +55,22 @@ def train(csv_file):
     X_train, X_test = X_processed[0:train_size], X_processed[train_size:len(X_processed)]
     Y_train, Y_test = Y[0:train_size], Y[train_size:len(Y)]
 
-    tb_callback = TensorBoard(log_dir='./logs', embeddings_freq=1)
+    #tb_callback = TensorBoard(log_dir='./logs', embeddings_freq=1)
 
     model = Sequential()
     model.add(Embedding(num_words, 32, input_length=max_log_length))
     model.add(Dropout(0.5))
-    model.add(LSTM(64, recurrent_dropout=0.5))
+    model.add(LSTM(16, recurrent_dropout=0.5))
     model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     print(model.summary())
     #from keras.utils import multi_gpu_model
     #model = multi_gpu_model(model, gpus=)
-    model.fit(X_train, Y_train, validation_split=0.25, epochs=3, batch_size=128, callbacks=[tb_callback])
+    model.fit(X_train, Y_train, validation_split=0.25, epochs=3, batch_size=500)
 
     # Evaluate model
-    score, acc = model.evaluate(X_test, Y_test, verbose=1, batch_size=128)
+    score, acc = model.evaluate(X_test, Y_test, verbose=1, batch_size=500)
 
     print("Model Accuracy: {:0.2f}%".format(acc * 100))
 
